@@ -1,0 +1,34 @@
+TO-DO LIST
+
+* mouse pointer (cursor) keeps changing shape as i move back and forth between this app and others
+* color chooser - let the user reset to system defaults
+* accelerator keys (open, save, colors, etc.)
+* allow for multiple dictionaries with auto-complete
+  * so i can add a Java dictionary that is separate from an english dictionary
+  * so users can add their own words
+* if the recent filelist is empty, don't show that menu option (deactivate it)
+* these MRJ things are deprecated; fix
+* let user change font
+* make sure focus is returned to the mainframe after any dialogs are shown (actions)
+    * this seems to be working, but i'm forcing it a lot; looks like a way to get default focus
+    * do the same thing on the recentFilesList
+* let user make writing area wider/narrower
+* can i do something to change the scrollbar background color (or image)?
+* need a good icon
+* color chooser - add 'apply', undo
+
+LONGER TERM TO-DO LIST
+
+* use the quaqua jsheet for dialogs
+* spell-checking
+* NewFileAction
+* find/search/replace
+* predictive text along w/ auto-complete?
+* write a temp backup file from time to time
+* put a little padding around the OpenRecentFileDialog
+* printing
+
+VERY LONG TERM
+
+* macros
+

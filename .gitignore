@@ -1,0 +1,6 @@
+# files git should ignore
+.classpath
+.project
+*.class
+*.DS_Store
+*~

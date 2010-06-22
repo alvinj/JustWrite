@@ -1,0 +1,126 @@
+<project name="JustWrite" default="create-bundle" basedir="..">
+
+  <!-- properties: basic -->
+  <property name="build.dir" value="build" />
+  <!-- property file="${build.dir}/build.xml" -->
+  <property name="jar.dir" value="jar" />
+  <property name="lib.dir" value="lib" />
+  <property name="release.dir" value="release" />
+  <property name="src.dir" value="src" />
+  <property name="classes.dir" value="classes" />
+  <property name="resource.dir" value="resources" />
+
+  <!-- properties: application-specific properties -->
+  <property name="jar-file-name" value="JustWrite.jar" />
+  <property name="manifest-file-name" value="justwrite.manifest" />
+  <property name="mac.aboutname" value="JustWrite" />
+  
+  <!-- properties: jarbundler properties (mac-only) -->
+  <property name="jarbundler.name" value="${mac.aboutname}" />
+  <property name="jarbundler.shortname" value="${mac.aboutname}" />
+  <property name="jarbundler.signature" value="Alvin Alexander, devdaily.com" />
+  <property name="jarbundler.mainclass" value="com.devdaily.justwrite.JustWrite" />
+  <property name="jarbundler.icon" value="build/justwrite.icns" />
+  <property name="jarbundler.jvmversion" value="1.5+" />
+  <property name="jarbundler.version" value="0.10" />
+  <property name="jarbundler.infostring" value="DevDaily.com JustWrite v0.1, June 2010" />
+  <property name="jarbundler.build" value="100" />
+  <property name="jarbundler.bundleid" value="com.devdaily.justwrite.JustWrite" />
+  <property name="jarbundler.apple.laf.useScreenMenuBar" value="true"/>
+  <property name="jarbundler.apple.awt.brushMetal" value="true"/>
+  <property name="jarbundler.apple.awt.showGrowBox" value="true"/>
+  <property name="jarbundler.com.apple.mrj.application.apple.menu.about.name" value="${mac.aboutname}"/>
+  <property name="jarbundler.apple.awt.textantialiasing" value="true"/>
+ 
+  <taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" />
+
+  <path id="class.path">
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar"/>
+      <include name="**/*.zip"/>
+    </fileset>
+  </path>
+
+  <target name="init">
+    <tstamp/>
+  </target>
+
+  <target name="create-classes-dir" depends="init">
+    <mkdir dir="${classes.dir}"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${classes.dir}"/>
+  </target>
+
+  <!-- compile: compile all our code to the "classes" directory -->
+  <target name="compile" depends="clean,create-classes-dir">
+    <javac destdir="${classes.dir}" source="1.5" >
+      <src path="${src.dir}"/>
+      <exclude name="**/_*.java"/>
+      <exclude name="**/Test*.java"/>
+      <classpath refid="class.path"/>
+    </javac>
+  </target>
+
+  <!-- jar: copy all needed resources, then make the jar file -->
+  <target name="create-jar" depends="compile">
+
+    <!-- copy any image files in our src directories to the same "classes" directory -->
+    <copy todir="${classes.dir}">
+      <fileset dir="${src.dir}">
+        <include name="**/*.gif"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.png"/>
+      </fileset>
+    </copy>
+    
+    <!-- create the jar file from our compiled classes and manifest file -->
+    <jar basedir="${classes.dir}" jarfile="${jar.dir}/${jar-file-name}" manifest="${build.dir}/${manifest-file-name}"/>
+    
+    <!-- copy any libraries our application depends on -->
+    <copy todir="${jar.dir}">
+      <fileset dir="${lib.dir}">
+        <include name="**/*.jar"/>
+        <include name="**/*.zip"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- mac/jar bundle: create our mac os x bundle based on our jar file, our libraries, and these properties -->
+  <target name="create-bundle" depends="create-jar">
+    <jarbundler dir="${release.dir}"
+                name="${jarbundler.name}"
+                shortname="${jarbundler.shortname}"
+                signature="${jarbundler.signature}"
+                mainclass="${jarbundler.mainclass}" 
+                icon="${jarbundler.icon}"
+                jvmversion="${jarbundler.jvmversion}"
+                version="${jarbundler.version}"
+                infostring="${jarbundler.infostring}"
+                build="${jarbundler.build}"
+                bundleid="${jarbundler.bundleid}" >
+
+      <jarfileset dir="${jar.dir}">
+        <include name="**/*.jar" />
+        <exclude name="**/CVS" />
+      </jarfileset>
+
+      <javaproperty name="apple.laf.useScreenMenuBar" value="${jarbundler.apple.laf.useScreenMenuBar}"/>
+      <javaproperty name="apple.awt.brushMetal" value="${jarbundler.apple.awt.brushMetal}"/>
+      <javaproperty name="apple.awt.showGrowBox" value="${jarbundler.apple.awt.showGrowBox}"/>
+      <javaproperty name="com.apple.mrj.application.apple.menu.about.name" value="${jarbundler.com.apple.mrj.application.apple.menu.about.name}"/>
+      <javaproperty name="apple.awt.textantialiasing" value="${jarbundler.apple.awt.textantialiasing}"/>
+    </jarbundler>
+  </target>
+
+</project>
+
+
+
+
+
+
+
+
+

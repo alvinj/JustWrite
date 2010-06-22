@@ -1,0 +1,65 @@
+JustWrite - a Mac OS X "Full Screen Editor" application
+
+June 20, 2010
+
+INTRODUCTION
+
+I created JustWrite as an experiment to see if I could create a full-screen,
+plain text editor on Mac OS X using Java. 
+
+The idea to create a full-screen editor was inspired in part by an 
+application I wrote named WikiTeX, which lets me place a "curtain" 
+behind the editor to hide my desktop, and my Hyde application 
+(http://www.devdaily.com/hide-desktop-and-desktop-icons), whose only 
+purpose is to hide a Mac OS X desktop to let you focus on your 
+foreground application (whatever that foreground app might be).
+
+LICENSE
+
+JustWrite is Copyright 2010, Alvin Alexander, http://devdaily.com.
+This software is released under the terms of the GNU GPL Version 3;
+see the LICENSE file included with this software, or 
+http://www.gnu.org/licenses/gpl.html for more information.
+
+LIBRARIES USED
+
+JustWrite uses the following open source libraries:
+
+* Quaqua (http://www.randelshofer.ch/quaqua/)
+* Jgoodies (http://www.jgoodies.com/)
+
+VERSION
+
+There is no official version of this application yet.
+
+BUILDING THE APPLICATION
+
+You can just run "ant" from the "build" directory to get this build to run, BUT, 
+you will need Ant installed, and will need to properly install the jarbundler jar 
+file into your ant/lib folder. See the "Mac OS X JarBundler Ant Task" 
+project (http://informagen.com/JarBundler/) for more information on that.
+
+Running the "ant" command from the build directory will create a complete build 
+of the JustWrite application, i.e., the JustWrite.app folder. This folder will 
+be created in the "release" directory of this project.
+
+RUNNING THE APPLICATION
+
+To run the application, you can just cd over to the "release" folder, and then 
+type this command:
+
+  open JustWrite.app
+
+Or, if you prefer, you can double-click the application icon from the Mac Finder.
+
+ABOUT THE ICON
+
+Like everything else here, the current icon needs some work. The current icon is
+a heavily modified version of an icon that I first found on the MouseRunner.com
+website, and is released under the Creative Commons license. See
+http://www.mouserunner.com/ for more information.
+
+
+
+
+
